@@ -86,36 +86,36 @@ function readSingleFile(e) {
 	 
 function displayContents(contents) {
 var chunkID = document.getElementById('chunkID');
-  chunkID.textContent = contents.substr(0, 4); 
+chunkID.textContent = contents.substr(0, 4); 
 	
 var chunkSize = document.getElementById('chunkSize');
 var someText = contents.substr(4,4);  
-  var binText =stringToBinary(someText);
-  chunkSize.textContent = binText;
+var binText =stringToBinary(someText);
+chunkSize.textContent = binText;
 	
 var format = document.getElementById('format');
-  format.textContent = contents.substr(8, 4); 
+format.textContent = contents.substr(8, 4); 
 	
 var subChunk1ID = document.getElementById('subChunk1ID');
-  subChunk1ID.textContent = contents.substr(12, 4);
+subChunk1ID.textContent = contents.substr(12, 4);
 	
 var subChunk1Size = document.getElementById('subChunk1Size');
 someText = contents.substr(16,4);  
- binText =stringToBinary(someText);
+binText =stringToBinary(someText);
 subChunk1Size.textContent =binText;
 	
 var audioFormat = document.getElementById('audioFormat');
 someText = contents.substr(20,2);  
- binText =stringToBinary(someText);
-  audioFormat.textContent = binText; 
+binText =stringToBinary(someText);
+audioFormat.textContent = binText; 
 	
 var numChannels = document.getElementById('numChannels');
-someText = contents.substr(22, 4); 
+someText = contents.substr(22, 2); 
 binText = stringToBinary(someText);
- numChannels.textContent = binText;
+numChannels.textContent = binText;
 	
 var sampleRate = document.getElementById('sampleRate');
-someText = contents.substr(26, 4); 
+someText = contents.substr(24, 4); 
 binText = stringToBinary(someText);
 sampleRate.textContent = binText;
 	
