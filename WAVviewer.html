@@ -7,15 +7,15 @@
 
 <h1>WAV2 View</h1>
 	
-<p>This is a mic input.</p>
+<p>Add a WAV file to see information about it.</p>
 <p><input id="file-input" type="file" accept="audio/*;capture=microphone"></p>
 <p>
-<h3>Contents of the file:</h3>
+<h3>Contents of the file header:</h3>
 	
-<h3>ChunkID</h3>
+<h3>ChunkID (4 Bytes)</h3>
 <pre id="chunkID"></pre>
 	
-<h3>ChunkSize</h3>
+<h3>ChunkSize (4 Bytes)</h3>
 <pre id="chunkSize"></pre>
 
 <h3>Format</h3>
@@ -97,7 +97,7 @@ var subChunk1ID = document.getElementById('subChunk1ID');
 var subChunk1Size = document.getElementById('subChunk1Size');
 test = contents.substr(16,4);  
   test2 =stringToBinary(test);
-subChunk1Size.textContent =test2.reverse();
+subChunk1Size.textContent =test2;
 var audioFormat = document.getElementById('audioFormat');
   audioFormat.textContent = contents.substr(20, 2); 
 var numChannels = document.getElementById('numChannels');
