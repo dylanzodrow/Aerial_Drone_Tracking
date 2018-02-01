@@ -5,7 +5,7 @@
 <body>
 
 
-<h1>WAV2 View</h1>
+<h1>WAV View</h1>
 	
 <p>Add a WAV file to see information about it.</p>
 <p><input id="file-input" type="file" accept="audio/*;capture=microphone"></p>
@@ -18,37 +18,37 @@
 <h3>ChunkSize (4 Bytes)</h3>
 <pre id="chunkSize"></pre>
 
-<h3>Format</h3>
+<h3>Format (4 Bytes)</h3>
 <pre id="format"></pre>
 	
-<h3>Sub Chunk1ID</h3>
+<h3>Sub Chunk1ID (4 Bytes) </h3>
 <pre id="subChunk1ID"></pre>
 	
-<h3>Sub Chunk1Size</h3>
+<h3>Sub Chunk1Size  (4 Bytes) </h3>
 <pre id="subChunk1Size"></pre>
 
-<h3>Audio Format</h3>
+<h3>Audio Format (2 Bytes) </h3>
 <pre id="audioFormat"></pre>
 	
-<h3>Number of Channels</h3>
+<h3>Number of Channels (2 Bytes) </h3>
 <pre id="numChannels"></pre>
 
-<h3>Sample Rate</h3>
+<h3>Sample Rate (4 Bytes) </h3>
 <pre id="sampleRate"></pre>
 	
-<h3>Byte Rate</h3>
+<h3>Byte Rate (4 Bytes) </h3>
 <pre id="byteRate"></pre>
 	
-<h3>Block Align</h3>
+<h3>Block Align (2 Bytes) </h3>
 <pre id="blockAlign"></pre>
 	
-<h3>Bits Per Sample</h3>
+<h3>Bits Per Sample  (2 Bytes) </h3>
 <pre id="bitsPerSample"></pre>
 	
-<h3>Sub Chunk2ID</h3>
+<h3>Sub Chunk2ID  (4 Bytes) </h3>
 <pre id="subChunk2ID"></pre>
 	
-<h3>Sub Chunk2Size</h3>
+<h3>Sub Chunk2Size (4 Bytes) </h3>
 <pre id="subChunk2Size"></pre>
 
 </p>
@@ -83,6 +83,16 @@ function readSingleFile(e) {
   };
   reader.readAsBinaryString(file);
 }
+
+/**
+ * Function that reverses a string 
+ * 
+ * @see https://medium.freecodecamp.org
+ */ 
+	 
+function reverseString(str) {
+    return str.split("").reverse().join("");
+} 
 	 
 function displayContents(contents) {
 var chunkID = document.getElementById('chunkID');
@@ -91,7 +101,7 @@ chunkID.textContent = contents.substr(0, 4);
 var chunkSize = document.getElementById('chunkSize');
 var someText = contents.substr(4,4);  
 var binText =stringToBinary(someText);
-chunkSize.textContent = binText;
+chunkSize.textContent = reverseString(binText);
 	
 var format = document.getElementById('format');
 format.textContent = contents.substr(8, 4); 
@@ -102,37 +112,37 @@ subChunk1ID.textContent = contents.substr(12, 4);
 var subChunk1Size = document.getElementById('subChunk1Size');
 someText = contents.substr(16,4);  
 binText =stringToBinary(someText);
-subChunk1Size.textContent =binText;
+subChunk1Size.textContent = reverseString(binText);
 	
 var audioFormat = document.getElementById('audioFormat');
 someText = contents.substr(20,2);  
 binText =stringToBinary(someText);
-audioFormat.textContent = binText; 
+audioFormat.textContent = reverseString(binText);
 	
 var numChannels = document.getElementById('numChannels');
 someText = contents.substr(22, 2); 
 binText = stringToBinary(someText);
-numChannels.textContent = binText;
+numChannels.textContent = reverseString(binText);
 	
 var sampleRate = document.getElementById('sampleRate');
 someText = contents.substr(24, 4); 
 binText = stringToBinary(someText);
-sampleRate.textContent = binText;
+sampleRate.textContent = reverseString(binText);
 	
 var byteRate = document.getElementById('byteRate');
 someText = contents.substr(28, 4); 
 binText = stringToBinary(someText);
-byteRate.textContent = binText;
+byteRate.textContent = reverseString(binText);
 	
 var blockAlign = document.getElementById('blockAlign');
 someText = contents.substr(32, 2);
 binText = stringToBinary(someText);
- blockAlign.textContent = binText;
+ blockAlign.textContent = reverseString(binText);
 	
 var bitsPerSample = document.getElementById('bitsPerSample');
 someText = contents.substr(34, 2); 
 binText = stringToBinary(someText);
-bitsPerSample.textContent = binText;
+bitsPerSample.textContent = reverseString(binText);
 	
 var subChunk2ID = document.getElementById('subChunk2ID');
 subChunk2ID.textContent = contents.substr(36, 4);
@@ -140,7 +150,7 @@ subChunk2ID.textContent = contents.substr(36, 4);
 var subChunk2Size = document.getElementById('subChunk2Size');
 someText = contents.substr(40,4); 
 binText = stringToBinary(someText);
-subChunk2Size.textContent = binText;
+subChunk2Size.textContent = reverseString(binText);
 	
 }
 	 
