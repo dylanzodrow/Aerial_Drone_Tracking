@@ -83,37 +83,65 @@ function readSingleFile(e) {
   };
   reader.readAsBinaryString(file);
 }
+	 
 function displayContents(contents) {
 var chunkID = document.getElementById('chunkID');
   chunkID.textContent = contents.substr(0, 4); 
+	
 var chunkSize = document.getElementById('chunkSize');
-var test = contents.substr(4,4);  
-  var test2 =stringToBinary(test);
-  chunkSize.textContent = test2;
+var someText = contents.substr(4,4);  
+  var binText =stringToBinary(someText);
+  chunkSize.textContent = binText;
+	
 var format = document.getElementById('format');
   format.textContent = contents.substr(8, 4); 
+	
 var subChunk1ID = document.getElementById('subChunk1ID');
   subChunk1ID.textContent = contents.substr(12, 4);
+	
 var subChunk1Size = document.getElementById('subChunk1Size');
-test = contents.substr(16,4);  
-  test2 =stringToBinary(test);
-subChunk1Size.textContent =test2;
+someText = contents.substr(16,4);  
+ binText =stringToBinary(someText);
+subChunk1Size.textContent =binText;
+	
 var audioFormat = document.getElementById('audioFormat');
-  audioFormat.textContent = contents.substr(20, 2); 
+someText = contents.substr(20,2);  
+ binText =stringToBinary(someText);
+  audioFormat.textContent = binText; 
+	
 var numChannels = document.getElementById('numChannels');
-  numChannels.textContent = contents.substr(22, 4); 
+someText = contents.substr(22, 4); 
+binText = stringToBinary(someText);
+ numChannels.textContent = binText;
+	
 var sampleRate = document.getElementById('sampleRate');
-  sampleRate.textContent = contents.substr(26, 4); 
+someText = contents.substr(26, 4); 
+binText = stringToBinary(someText);
+sampleRate.textContent = binText;
+	
 var byteRate = document.getElementById('byteRate');
-  byteRate.numChannels = contents.substr(30, 4); 
+someText = contents.substr(30, 4); 
+binText = stringToBinary(someText);
+byteRate.numChannels = binText;
+	
 var blockAlign = document.getElementById('blockAlign');
-  blockAlign.textContent = contents.substr(32, 2); 
+someText = contents.substr(32, 2);
+binText = stringToBinary(someText);
+ blockAlign.textContent = binText;
+	
 var bitsPerSample = document.getElementById('bitsPerSample');
-  bitsPerSample.textContent = contents.substr(34, 2); 
+someText = contents.substr(34, 2); 
+binText = stringToBinary(someText);
+bitsPerSample.textContent = binText;
+	
 var subChunk2ID = document.getElementById('subChunk2ID');
-  subChunk2ID.textContent = contents.substr(36, 4);
+subChunk2ID.textContent = contents.substr(36, 4);
+	
 var subChunk2Size = document.getElementById('subChunk2Size');
-  subChunk2Size.textContent = contents.substr(40,4); 
+someText = contents.substr(40,4); 
+binText = stringToBinary(someText);
+subChunk2Size.textContent = binText;
+	
 }
 	 
 	 
