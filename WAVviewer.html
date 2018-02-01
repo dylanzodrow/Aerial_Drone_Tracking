@@ -122,7 +122,7 @@ sampleRate.textContent = binText;
 var byteRate = document.getElementById('byteRate');
 someText = contents.substr(28, 4); 
 binText = stringToBinary(someText);
-byteRate.numChannels = binText;
+byteRate.textContent = binText;
 	
 var blockAlign = document.getElementById('blockAlign');
 someText = contents.substr(32, 2);
