@@ -54,7 +54,13 @@
 </p>
 	
  <script>
-	 
+
+/**
+ * Function that converts a string into its binary representation
+ * 
+ * @see https://gist.github.com/eyecatchup/6742657
+ * @author https://github.com/eyecatchup
+ */
 function stringToBinary(str, spaceSeparatedOctets) {
     function zeroPad(num) {
         return "00000000".slice(String(num).length) + num;
@@ -90,7 +96,7 @@ var subChunk1ID = document.getElementById('subChunk1ID');
   subChunk1ID.textContent = contents.substr(12, 4);
 var subChunk1Size = document.getElementById('subChunk1Size');
 test = contents.substr(16,4);  
-  test2 =reverse(stringToBinary(test));
+  test2 =stringToBinary(test);
 subChunk1Size.textContent =test2.reverse();
 var audioFormat = document.getElementById('audioFormat');
   audioFormat.textContent = contents.substr(20, 2); 
