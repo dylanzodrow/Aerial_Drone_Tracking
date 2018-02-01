@@ -64,6 +64,7 @@ function stringToBinary(str, spaceSeparatedOctets) {
         return !1 == spaceSeparatedOctets ? str : str + " "
     });
 };
+	 
 function readSingleFile(e) {
   var file = e.target.files[0];
   if (!file) {
@@ -82,7 +83,7 @@ var chunkID = document.getElementById('chunkID');
 var chunkSize = document.getElementById('chunkSize');
 var test = contents.substr(4,4);  
   var test2 =stringToBinary(test);
-  chunkSize.textContent = test2.reverse();
+  chunkSize.textContent = test2;
 var format = document.getElementById('format');
   format.textContent = contents.substr(8, 4); 
 var subChunk1ID = document.getElementById('subChunk1ID');
