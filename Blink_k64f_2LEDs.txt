@@ -1,0 +1,19 @@
+//This example demonstrates a GPIO example
+//and the pin names can be found in the previous sheet. 
+
+//In this example code 2 LEDs light up alternatively,
+//one on the board and other in K64F GPIO pin 12.
+
+//source: http://www.instructables.com/id/Getting-started-with-FreeScale-K64f/
+
+#include "mbed.h"
+DigitalOut gpo(D0); 
+DigitalOut led(LED_RED);
+int main()
+{
+   while (true) {
+         gpo = !gpo; // toggle pin
+         led = !led; // toggle led
+         wait(0.2f);
+    }
+}
