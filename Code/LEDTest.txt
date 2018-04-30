@@ -7,7 +7,9 @@
 // Easy to invert later
 #DEFINE ON 1
 #DEFINE OFF 0
-#DEFINE PAUSE 0.2
+#DEFINE PAUSE 0.2 // The time increment
+int reps =2; //Repetitions
+
 
 DigitalOut Lsb(D2);//D2 = PTB9
 DigitalOut Bit%(D3);//D3 = PTA1
@@ -17,89 +19,63 @@ DigitalOut Mid(D6);//D6 = PTC2 controls the middle LED
 DigitalOut Out(D7);//D7 = PTC3 controls the outer LED
 DigitalOut led(LED_RED);
 
-Lsb = OFF; // 000
+// LED reset to off
+void reset( )
+{
+Lsb = OFF; 
 Bit = OFF;
 Msb = OFF;
-int reps =2; //Repetitions
+Inn = OFF;
+Mid = OFF;
+Out = OFF;
+}
 
-
-void testrow ()
+// Toggles the row once
+void testrow()
 {
 Out = !Out; // toggle pin
 Mid = !Mid;
 Inn = !Inn;
 }
 
-void ColSelect(int num)
+
+// Converts the logic for the decoder to int
+// The position rotates clockwise from the USB cable
+
+
+void colselect(int num)
 {
 
 switch (num)
 {
 case 0: // code to be executed if n is equal to 0
-Lsb = OFF; // 000
-Bit = OFF;
-Msb = OFF;
+Msb = OFF;Bit = OFF;Lsb = OFF;// 000
        break;
-
 case 1: // code to be executed if n is equal to 1
-Lsb = ON; // 001
-Bit = OFF;
-Msb = OFF;
+Msb = OFF;Bit = OFF;Lsb = ON; // 001
        break;
-
 case 2: // code to be executed if n is equal to 2
-Lsb = OFF; // 010
-Bit = ON;
-Msb = OFF;
+Msb = OFF;Bit = ON;Lsb = OFF; // 010
        break;
-
-
 case 3: // code to be executed if n is equal to 3
-Lsb = ON; // 011
-Bit = ON;
-Msb = OFF;
+Msb = OFF;Bit = ON;Lsb = ON; // 011
        break;
-
 case 4: // code to be executed if n is equal to 4
-Lsb = OFF; // 100
-Bit = OFF;
-Msb = ON;
-       break;
-       
+Msb = ON;Bit = OFF;Lsb = OFF; // 100
+       break;       
 case 5: // code to be executed if n is equal to 5
-Lsb = ON; // 101
-Bit = OFF;
-Msb = ON;
-       break;     
-       
+Msb = ON;Bit = OFF;Lsb = ON; // 101
+       break;           
 case 6: // code to be executed if n is equal to 6
-Lsb = OFF; // 110
-Bit = ON;
-Msb = ON;
-       break;
-       
+Msb = ON;Bit = ON;Lsb = OFF; // 110
+       break;     
 case 7: // code to be executed if n is equal to 7
-Lsb = ON; // 000
-Bit = ON;
-Msb = ON;
-       break;
-       
-
-
-    default:
-Lsb = OFF;
-Bit = OFF;
-Msb = OFF;
-    
-    
-Lsb = ON; // Flash
-Bit = ON;
-Msb = ON;
-
-Lsb = OFF; 
-Bit = OFF;
-Msb = OFF;
-
+Msb = ON;Bit = ON;Lsb = ON; // 111
+       break;
+default:
+Msb = OFF; Bit = OFF;Lsb = OFF;
+Msb = ON;Bit = ON;Lsb = ON; // Flash
+Msb = OFF;Bit = OFF;Lsb = OFF; 
 }
 
 }
@@ -117,8 +93,7 @@ led = !led; // toggle led
         testrow();
         testrow();
         testrow();
-        ColSelect(count);
-        
+        colselect(count);
     }
          
          reps = reps - 1;
