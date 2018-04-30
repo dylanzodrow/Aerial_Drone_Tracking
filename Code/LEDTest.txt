@@ -1,0 +1,129 @@
+//This example flashes all the lights on the board
+//
+//source: http://www.instructables.com/id/Getting-started-with-FreeScale-K64f/
+
+#include "mbed.h"
+
+// Easy to invert later
+#DEFINE ON 1
+#DEFINE OFF 0
+#DEFINE PAUSE 0.2
+
+DigitalOut Lsb(D2);//D2 = PTB9
+DigitalOut Bit%(D3);//D3 = PTA1
+DigitalOut Msb(D4);//D4 = PTB23
+DigitalOut Inn(D5);//D5 = PTA2 controls the inner LED
+DigitalOut Mid(D6);//D6 = PTC2 controls the middle LED
+DigitalOut Out(D7);//D7 = PTC3 controls the outer LED
+DigitalOut led(LED_RED);
+
+Lsb = OFF; // 000
+Bit = OFF;
+Msb = OFF;
+int reps =2; //Repetitions
+
+
+void testrow ()
+{
+Out = !Out; // toggle pin
+Mid = !Mid;
+Inn = !Inn;
+}
+
+void ColSelect(int num)
+{
+
+switch (num)
+{
+case 0: // code to be executed if n is equal to 0
+Lsb = OFF; // 000
+Bit = OFF;
+Msb = OFF;
+       break;
+
+case 1: // code to be executed if n is equal to 1
+Lsb = ON; // 001
+Bit = OFF;
+Msb = OFF;
+       break;
+
+case 2: // code to be executed if n is equal to 2
+Lsb = OFF; // 010
+Bit = ON;
+Msb = OFF;
+       break;
+
+
+case 3: // code to be executed if n is equal to 3
+Lsb = ON; // 011
+Bit = ON;
+Msb = OFF;
+       break;
+
+case 4: // code to be executed if n is equal to 4
+Lsb = OFF; // 100
+Bit = OFF;
+Msb = ON;
+       break;
+       
+case 5: // code to be executed if n is equal to 5
+Lsb = ON; // 101
+Bit = OFF;
+Msb = ON;
+       break;     
+       
+case 6: // code to be executed if n is equal to 6
+Lsb = OFF; // 110
+Bit = ON;
+Msb = ON;
+       break;
+       
+case 7: // code to be executed if n is equal to 7
+Lsb = ON; // 000
+Bit = ON;
+Msb = ON;
+       break;
+       
+
+
+    default:
+Lsb = OFF;
+Bit = OFF;
+Msb = OFF;
+    
+    
+Lsb = ON; // Flash
+Bit = ON;
+Msb = ON;
+
+Lsb = OFF; 
+Bit = OFF;
+Msb = OFF;
+
+}
+
+}
+
+
+
+int main()
+{
+led = !led; // toggle led
+
+   while (reps) {
+         
+         for(count = 0; count <= 7; ++count)
+    {
+        testrow();
+        testrow();
+        testrow();
+        ColSelect(count);
+        
+    }
+         
+         reps = reps - 1;
+         wait( PAUSEf );
+    }
+    
+led = !led; // toggle led
+}
